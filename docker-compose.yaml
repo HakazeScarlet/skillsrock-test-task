@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  postgresql:
+    image: postgres:17.2
+    container_name: users-pg
+    ports:
+      - "5436:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/users-db 777
+    environment:
+      - 'POSTGRES_DB=users_db'
+      - 'POSTGRES_PASSWORD=pass'
+      - 'POSTGRES_USER=admin'
