@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/createNewUser")
     public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUpdateUserCommand command) {
-        return ResponseEntity.ok(userService.create());
+        return ResponseEntity.ok(userService.create(command));
     }
 
     @PutMapping("/userDetailsUpdate")

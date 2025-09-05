@@ -4,8 +4,8 @@ CREATE TABLE users
     fio          VARCHAR(256) NOT NULL,
     phone_number VARCHAR(12) UNIQUE,
     avatar       text,
-    role_id      uuid         NOT NULL,
-    CONSTRAINT fk_user_role FOREIGN KEY (role_id)
+    role_uuid      uuid         NOT NULL,
+    CONSTRAINT fk_user_role FOREIGN KEY (role_uuid)
         REFERENCES roles (uuid)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
