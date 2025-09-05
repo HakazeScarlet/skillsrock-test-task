@@ -22,33 +22,29 @@ public class UserService {
 
     public UserDto create(CreateUpdateUserCommand command) {
         User user = new User();
-        user.setFio(command.getFio());
-        user.setPhoneNumber(command.getPhoneNumber());
-        user.setAvatar(command.getAvatar());
-
-        RoleDto roleDto = command.getRole();
-        Role role = new Role();
-        role.setName(roleDto.getRoleName());
-        user.setRole(role);
-        User savedUser = userRepository.save(user);
+        User savedUser = save(user, command, new Role());
         return new UserDto(savedUser);
     }
 
     public UserDto update(UUID uuid, CreateUpdateUserCommand command) {
         User user = userRepository.getReferenceById(uuid);
+        User updatedUser = save(user, command, user.getRole());
+        return new UserDto(updatedUser);
+    }
+
+    public void deleteByUUID(UUID uuid) {
+        userRepository.deleteById(uuid);
+    }
+
+    private User save(User user, CreateUpdateUserCommand command, Role role) {
         user.setFio(command.getFio());
         user.setPhoneNumber(command.getPhoneNumber());
         user.setAvatar(command.getAvatar());
 
         RoleDto roleDto = command.getRole();
-        Role role = user.getRole();
         role.setName(roleDto.getRoleName());
         user.setRole(role);
-        userRepository.save(user);
-        return new UserDto(user);
-    }
 
-    public void deleteByUUID(UUID uuid) {
-        userRepository.deleteById(uuid);
+        return userRepository.save(user);
     }
 }
