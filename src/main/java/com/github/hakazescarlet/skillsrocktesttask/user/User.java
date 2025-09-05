@@ -2,7 +2,6 @@ package com.github.hakazescarlet.skillsrocktesttask.user;
 
 import com.github.hakazescarlet.skillsrocktesttask.role.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -21,16 +20,6 @@ public class User {
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_uuid")
     private Role role;
-
-    public User() {
-    }
-
-    public User(@NotNull String fio) {
-        if (fio == null) {
-            throw new NoFioException("Fio is null.");
-        }
-        this.fio = fio;
-    }
 
     public UUID getId() {
         return id;
@@ -93,11 +82,5 @@ public class User {
             ", avatar='" + avatar + '\'' +
             ", role=" + role +
             '}';
-    }
-
-    private static class NoFioException extends RuntimeException {
-        public NoFioException(String message) {
-            super(message);
-        }
     }
 }
