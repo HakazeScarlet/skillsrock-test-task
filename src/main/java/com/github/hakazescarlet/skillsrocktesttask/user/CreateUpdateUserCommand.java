@@ -1,6 +1,6 @@
 package com.github.hakazescarlet.skillsrocktesttask.user;
 
-import com.github.hakazescarlet.skillsrocktesttask.role.Role;
+import com.github.hakazescarlet.skillsrocktesttask.role.RoleDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -17,7 +17,7 @@ public class CreateUpdateUserCommand {
     private String avatar;
 
     @NotNull
-    private Role role;
+    private RoleDto role;
 
     public String getFio() {
         return fio;
@@ -43,11 +43,11 @@ public class CreateUpdateUserCommand {
         this.avatar = avatar;
     }
 
-    public Role getRole() {
+    public RoleDto getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleDto role) {
         this.role = role;
     }
 
@@ -61,15 +61,5 @@ public class CreateUpdateUserCommand {
     @Override
     public int hashCode() {
         return Objects.hash(fio, phoneNumber, avatar, role);
-    }
-
-    @Override
-    public String toString() {
-        return "CreateUpdateUserCommand{" +
-            "fio='" + fio + '\'' +
-            ", phoneNumber='" + phoneNumber + '\'' +
-            ", avatar='" + avatar + '\'' +
-            ", role=" + role +
-            '}';
     }
 }

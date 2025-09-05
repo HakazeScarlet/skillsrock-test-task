@@ -32,21 +32,12 @@ public class UserController {
         @RequestBody @Valid CreateUpdateUserCommand command,
         @NotNull @RequestParam("uuid") UUID uuid
     ) {
-        if (command.getRole().getUuid() == null) {
-            throw new NoRoleUUIDException("Role's UUID is null.");
-        }
-        return ResponseEntity.ok(userService.update());
+        return ResponseEntity.ok(userService.update(uuid, command));
     }
 
     @DeleteMapping("/users")
     public ResponseEntity<UserDto> deleteUser(@NotNull @RequestParam("uuid") UUID uuid) {
         userService.deleteByUUID(uuid);
         return ResponseEntity.ok().build();
-    }
-
-    private static class NoRoleUUIDException extends RuntimeException {
-        public NoRoleUUIDException(String message) {
-            super(message);
-        }
     }
 }

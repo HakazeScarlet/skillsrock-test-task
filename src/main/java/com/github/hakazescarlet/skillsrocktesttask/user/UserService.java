@@ -1,5 +1,7 @@
 package com.github.hakazescarlet.skillsrocktesttask.user;
 
+import com.github.hakazescarlet.skillsrocktesttask.role.Role;
+import com.github.hakazescarlet.skillsrocktesttask.role.RoleDto;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,7 +16,8 @@ public class UserService {
     }
 
     public UserDto getByUUID(UUID uuid) {
-        return null;
+        User user = userRepository.getReferenceById(uuid);
+        return new UserDto(user);
     }
 
     public UserDto create(CreateUpdateUserCommand command) {
@@ -22,15 +25,30 @@ public class UserService {
         user.setFio(command.getFio());
         user.setPhoneNumber(command.getPhoneNumber());
         user.setAvatar(command.getAvatar());
-        user.setRole(command.getRole());
+
+        RoleDto roleDto = command.getRole();
+        Role role = new Role();
+        role.setName(roleDto.getRoleName());
+        user.setRole(role);
         User savedUser = userRepository.save(user);
         return new UserDto(savedUser);
     }
 
-    public UserDto update() {
-        return null;
+    public UserDto update(UUID uuid, CreateUpdateUserCommand command) {
+        User user = userRepository.getReferenceById(uuid);
+        user.setFio(command.getFio());
+        user.setPhoneNumber(command.getPhoneNumber());
+        user.setAvatar(command.getAvatar());
+
+        RoleDto roleDto = command.getRole();
+        Role role = user.getRole();
+        role.setName(roleDto.getRoleName());
+        user.setRole(role);
+        userRepository.save(user);
+        return new UserDto(user);
     }
 
     public void deleteByUUID(UUID uuid) {
+        userRepository.deleteById(uuid);
     }
 }

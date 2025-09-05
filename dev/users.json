@@ -1,0 +1,41 @@
+{
+  "fio": "Another Name",
+  "phoneNumber": "+234123523",
+  "avatar": "hsadhsaQWEGERA3TFS3453",
+  "role": {
+    "uuid": null,
+    "name": "user"
+  },
+
+  "fio": "Alexander Dodovanskov",
+  "phoneNumber": "1122334455",
+  "avatar": "mega avatar 777",
+  "role": {
+    "uuid": null,
+    "name": "Mega admin"
+  },
+
+  "fio": "Init Commit",
+  "phoneNumber": "+987654321",
+  "avatar": "ava_223344",
+  "role": {
+    "uuid": null,
+    "name": "user"
+  },
+
+  "fio": "Mini Pickle",
+  "phoneNumber": "111111",
+  "avatar": "io-123",
+  "role": {
+    "uuid": null,
+    "name": "user"
+  },
+
+  "fio": "New User",
+  "phoneNumber": "+77777777",
+  "avatar": null,
+  "role": {
+    "uuid": null,
+    "name": "new user"
+  }
+}

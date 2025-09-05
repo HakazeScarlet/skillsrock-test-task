@@ -18,7 +18,7 @@ public class User {
     private String phoneNumber;
     private String avatar;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_uuid")
     private Role role;
 
